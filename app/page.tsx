@@ -1,69 +1,103 @@
-import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import ContactForm from "@/components/ContactForm";
+import SiteFooter from "@/components/SiteFooter";
+
+const interests = [
+  {
+    number: "01",
+    title: "Artificial intelligence",
+    description:
+      "Exploring how intelligent systems can make everyday tools more useful, intuitive, and human.",
+    tag: "CURIOUS ABOUT",
+  },
+  {
+    number: "02",
+    title: "Software engineering",
+    description:
+      "Learning to turn thoughtful ideas into reliable, well-crafted experiences—one detail at a time.",
+    tag: "BUILDING TOWARD",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+
+        <section className="about-section page-shell" id="about">
+          <div className="section-index"><span>01</span><span>THE PERSON BEHIND THE CODE</span></div>
+          <div className="about-copy">
+            <p className="eyebrow">A little about me</p>
+            <h2>
+              Drawn to the space where <em>curiosity</em> meets craft.
+            </h2>
+            <p className="body-copy">
+              I’m Felicia, a Computer Science student interested in the ideas
+              and engineering behind thoughtful digital products. I’m at the
+              beginning of my journey, learning by asking questions, making
+              things, and paying attention to how technology feels to use.
+            </p>
+            <p className="body-copy">
+              Right now, I’m especially curious about artificial intelligence
+              and the small decisions that make software feel clear, useful,
+              and human.
+            </p>
+          </div>
+          <div className="about-note">
+            <span className="note-mark">“</span>
+            <p>Thoughtful work starts with thoughtful questions.</p>
+            <span className="note-caption">A PRINCIPLE I’M LEARNING BY</span>
+          </div>
+        </section>
+
+        <section className="explore-section" id="interests">
+          <div className="page-shell">
+            <div className="section-index"><span>02</span><span>WHAT I&apos;M LEANING INTO</span></div>
+            <div className="explore-heading">
+              <div>
+                <p className="eyebrow">Areas of curiosity</p>
+                <h2>Still learning.<br /><em>Always exploring.</em></h2>
+              </div>
+              <p className="explore-intro">A few directions I’m excited to grow in. This list will evolve as I do.</p>
+            </div>
+            <div className="interest-grid">
+              {interests.map((interest) => (
+                <article className="interest-card" key={interest.number}>
+                  <div className="interest-topline">
+                    <span>{interest.number}</span>
+                    <span className="interest-tag">{interest.tag}</span>
+                  </div>
+                  <div className={`interest-art interest-art-${interest.number}`} aria-hidden="true">
+                    {interest.number === "01" ? (
+                      <><span className="orbit orbit-one" /><span className="orbit orbit-two" /><span className="orbit-core">a<span>i</span></span><span className="orbit-dot" /></>
+                    ) : (
+                      <><span className="code-window"><i /><i /><i /><b>&lt; / &gt;</b></span><span className="code-shadow" /></>
+                    )}
+                  </div>
+                  <h3>{interest.title}</h3>
+                  <p>{interest.description}</p>
+                  <span className="card-rule" />
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="contact-section page-shell" id="contact">
+          <div className="section-index"><span>03</span><span>LEAVE A NOTE</span></div>
+          <div className="contact-content">
+            <p className="eyebrow">The next good thing starts somewhere</p>
+            <h2>Let’s start<br /><em>a conversation.</em></h2>
+            <p className="contact-copy">Always happy to connect with kind people, curious minds, and fellow builders.</p>
+            <ContactForm />
+          </div>
+          <div className="contact-decoration" aria-hidden="true"><span>F</span><i /></div>
+        </section>
       </main>
-    </div>
+      <SiteFooter />
+    </>
   );
 }
